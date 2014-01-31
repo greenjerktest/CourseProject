@@ -17,13 +17,6 @@
                      src="<c:url value="/general/${creative.author.username}/avatar"/>"
                      width="105" height="105"/>
             </div>
-            <div style="margin-top: 150px">
-                <strong><spring:message code="label.tags"/>:</strong>
-                <c:forEach var="tag" items="${creative.tags}">
-                    <small>${tag.tagName}</small>
-                </c:forEach>
-
-            </div>
 
         </div>
 
@@ -39,6 +32,14 @@
                 </div>
 
             </a>
+
+            <div>
+                <strong><spring:message code="label.tags"/>:</strong>
+                <c:forEach var="tag" items="${creative.tags}">
+                    <small>${tag.tagName}</small>
+                </c:forEach>
+
+            </div>
         </div>
 
     </c:forEach>

@@ -37,6 +37,7 @@ public class HibernateSearchTools {
      * @param defaultAnalyzer the default analyzer for parsing the search terms
      * @return
      * @throws org.apache.lucene.queryParser.ParseException
+     *
      */
     public static Query generateQuery(String searchTerm, Class searchedEntity, Session sess, Analyzer defaultAnalyzer) throws ParseException {
         Query qry = null;
@@ -65,7 +66,7 @@ public class HibernateSearchTools {
                 reader = readerAccessor.open(searchedEntity);
                 Collection<String> fields = ReaderUtil.getIndexedFields(reader);
                 fields.remove("_hibernate_class");
-                String[] fnames =  new String[fields.size()];
+                String[] fnames = new String[fields.size()];
                 fields.toArray(fnames);
 
                 // To search on all fields, search the term in all fields
@@ -114,10 +115,9 @@ public class HibernateSearchTools {
         massIndexer.purgeAllOnStart(true);
         try {
             if (!async) {
-                // 重建索引时锁住索引
                 massIndexer.startAndWait();
             } else {
-                // 重建索引时不锁住索引
+                // If blocked, the index is not reconstructed
                 massIndexer.start();
             }
         } catch (InterruptedException e) {

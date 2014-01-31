@@ -60,15 +60,16 @@
     <div class="form-narrow form-horizontal">
         <img class="avatar_profile" src="<c:url value="/user/profile/avatar"/>"
              width="140" height="140"/>
-        <a id="changeAvatar" name="changeAvatar"
+        <a id="changeAvatar"
            class="btn btn-success btn-large" style="display: block; float: right">
             <spring:message code="label.ch_avatar"/>
         </a>
-        <form:form modelAttribute="uploadForm" id="fileForm" type="hidden"
-                   action="/user/profile/avatar" method="post"
-                   enctype="multipart/form-data">
+
+        <form modelAttribute="uploadForm" id="fileForm" type="hidden"
+              action="/user/profile/avatar" method="post"
+              enctype="multipart/form-data">
             <input style="visibility: hidden;" type="file" name="file" id="fileInput"/>
-        </form:form>
+        </form>
     </div>
 
 </div>

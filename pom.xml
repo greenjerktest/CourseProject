@@ -27,7 +27,7 @@
         <!-- hibernate config -->
         <hibernate.dialect>org.hibernate.dialect.MySQL5Dialect</hibernate.dialect>
         <hibernate.hbm2ddl.auto>update</hibernate.hbm2ddl.auto>
-        <hibernate.show_sql>true</hibernate.show_sql>
+        <hibernate.show_sql>false</hibernate.show_sql>
         <hibernate.format_sql>false</hibernate.format_sql>
         <hibernate.query.substitutions>true 1, false 0</hibernate.query.substitutions>
         <hibernate.default_batch_fetch_size>16</hibernate.default_batch_fetch_size>

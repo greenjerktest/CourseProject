@@ -1,6 +1,5 @@
 package com.itra.course.controller;
 
-import com.itra.course.form.AvatarForm;
 import com.itra.course.form.RegisterForm;
 import com.itra.course.form.UserForm;
 import com.itra.course.model.User;
@@ -81,7 +80,6 @@ public class AccountController {
     @RequestMapping(value = "user/profile")
     public ModelAndView profile(ModelAndView mav) {
         mav.addObject("userForm", new UserForm());
-        mav.addObject("avatarForm", new AvatarForm());
         mav.setViewName("user/profile");
         return mav;
     }
