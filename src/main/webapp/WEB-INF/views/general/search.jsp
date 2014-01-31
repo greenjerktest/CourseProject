@@ -20,7 +20,7 @@
             <div style="margin-top: 150px">
                 <strong><spring:message code="label.tags"/>:</strong>
                 <c:forEach var="tag" items="${creative.tags}">
-                    <small>${tag.tag}</small>
+                    <small>${tag.tagName}</small>
                 </c:forEach>
 
             </div>

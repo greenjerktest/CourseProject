@@ -4,8 +4,8 @@ import org.apache.lucene.analysis.standard.StandardAnalyzer;
 import org.hibernate.search.annotations.*;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * User: Greenjerk
@@ -24,18 +24,18 @@ public class Tag {
     private long id;
 
     @Column
-    @Field(index=Index.YES, analyze= Analyze.YES, store=Store.YES,
+    @Field(index = Index.YES, analyze = Analyze.YES, store = Store.YES,
             analyzer = @Analyzer(impl = StandardAnalyzer.class))
-    private String tag;
+    private String tagName;
 
     @ManyToMany(fetch = FetchType.EAGER, mappedBy = "tags")
-    private Collection<Creative> creatives = new ArrayList<>();
+    private Set<Creative> creatives = new HashSet<>();
 
-    public Collection<Creative> getCreatives() {
+    public Set<Creative> getCreatives() {
         return creatives;
     }
 
-    public void setCreatives(Collection<Creative> creatives) {
+    public void setCreatives(Set<Creative> creatives) {
         this.creatives = creatives;
     }
 
@@ -47,12 +47,11 @@ public class Tag {
         this.id = id;
     }
 
-    public String getTag() {
-        return tag;
+    public String getTagName() {
+        return tagName;
     }
 
-    public void setTag(String tag) {
-        this.tag = tag;
+    public void setTagName(String tagName) {
+        this.tagName = tagName;
     }
-
 }

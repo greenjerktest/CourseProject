@@ -22,11 +22,12 @@
     <form:form method="post" action="/user/creative/new" commandName="creativeForm"
                class="form-narrow form-horizontal" enctype="multipart/form-data">
 
+        <form:errors path="*" cssClass="errorblock" element="div"/>
+
         <div class="form-group">
             <form:label path="title"><spring:message
                     code="label.title"/></form:label>
-            <form:errors path="title" cssClass="label-danger"><spring:message
-                    code="label.title"/></form:errors>
+            <form:errors cssClass="error" path="title"/>
             <div class="col-lg-10">
                 <form:input path="title" cssClass="form-control"/>
             </div>
@@ -35,13 +36,20 @@
         <div class="form-group">
             <form:label path="description"><spring:message
                     code="label.description"/></form:label>
-            <form:errors path="description" cssClass="label-danger"><spring:message
-                    code="label.description"/></form:errors>
+            <form:errors cssClass="error" path="description"/>
             <div class="col-lg-10">
                 <form:textarea path="description" cssClass="form-control"/>
             </div>
         </div>
 
+        <div class="form-group">
+            <form:label path="tags"><spring:message
+                    code="label.tags"/></form:label>
+            <form:errors cssClass="error" path="tags"/>
+            <div class="col-lg-10">
+                <form:input path="tags" id="w-input-tag" cssClass="form-control"/>
+            </div>
+        </div>
 
         <a id="changeLogo" name="changeLogo"
            class="btn btn-default btn-block">
@@ -57,3 +65,28 @@
     </form:form>
 
 </div>
+
+<script>
+    $(document).ready(function () {
+
+        $('#w-input-tag').autocomplete({
+            serviceUrl: '${pageContext.request.contextPath}/getTags',
+            paramName: "query",
+            delimiter: ",",
+            transformResult: function (response) {
+                return {
+
+                    suggestions: $.map($.parseJSON(response), function (item) {
+
+                        return { value: item.tagName, data: item.id };
+                    })
+
+                };
+
+            }
+
+        });
+
+
+    });
+</script>

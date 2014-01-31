@@ -11,8 +11,8 @@ import javax.validation.constraints.Size;
  */
 public class CommentForm {
 
-    @Size(min=1, max=255)
-    @NotEmpty(message = "Field cannot be empty")
+    @Size(min = 1, max = 255, message = "{validation.size}")
+    @NotEmpty(message = "{validation.not_empty}")
     private String comment;
 
     public String getComment() {

@@ -3,10 +3,8 @@ package com.itra.course.service.impl;
 import com.itra.course.model.Comment;
 import com.itra.course.model.Creative;
 import com.itra.course.model.Head;
-import com.itra.course.service.CommentService;
-import com.itra.course.service.CreativeService;
-import com.itra.course.service.HeadService;
-import com.itra.course.service.SearchService;
+import com.itra.course.model.Tag;
+import com.itra.course.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -26,12 +24,12 @@ public class SearchServiceImpl implements SearchService {
 
     @Autowired
     CommentService commentService;
-
     @Autowired
     CreativeService creativeService;
-
     @Autowired
     HeadService headService;
+    @Autowired
+    TagService tagService;
 
     @Override
     public Set<Creative> search(String term) {
@@ -43,6 +41,10 @@ public class SearchServiceImpl implements SearchService {
 
         for (Head head : headService.search(term)) {
             creativeSet.add(head.getCreative());
+        }
+
+        for (Tag tag : tagService.search(term)) {
+            creativeSet.addAll(tag.getCreatives());
         }
 
         for (Creative creative : creativeService.search(term)) {

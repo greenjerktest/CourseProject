@@ -2,12 +2,13 @@ package com.itra.course.dao.hibernate;
 
 import com.itra.course.dao.CreativeDao;
 import com.itra.course.model.Creative;
-import org.hibernate.*;
+import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.HashSet;
 import java.util.List;
 
 /**
@@ -27,8 +28,9 @@ public class CreativeDaoImpl extends GenericDaoImpl<Creative> implements Creativ
     private SessionFactory sessionFactory;
 
     @Override
-    public List getCreatives() {
-        return sessionFactory.getCurrentSession().createCriteria(Creative.class).list();
+    public HashSet<Creative> getCreatives() {
+        List<Creative> creativeList = sessionFactory.getCurrentSession().createCriteria(Creative.class).list();
+        return new HashSet<Creative>(creativeList);
     }
 
     @Override

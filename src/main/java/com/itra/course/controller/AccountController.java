@@ -68,7 +68,7 @@ public class AccountController {
 
         if ((userService.getUserByName(r.getUsername())) != null) {
             result.addError(new FieldError("registerForm", "username",
-                    "A user already exists with that name."));
+                    "{duplicate_name}")); // TODO: finish it
             mav.setViewName("anonymous/register");
             return mav;
         }

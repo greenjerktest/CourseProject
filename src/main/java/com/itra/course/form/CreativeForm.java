@@ -1,5 +1,7 @@
 package com.itra.course.form;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 import javax.validation.constraints.Size;
 
 /**
@@ -9,11 +11,15 @@ import javax.validation.constraints.Size;
  */
 public class CreativeForm {
 
-    @Size(min = 3, max = 64)
+    @Size(min = 3, max = 64, message = "{validation.size}")
+    @NotEmpty(message = "{validation.not_empty}")
     private String title;
 
-    @Size(min = 3, max = 400)
+    @Size(min = 3, max = 400, message = "{validation.size}")
+    @NotEmpty(message = "{validation.not_empty}")
     private String description;
+
+    private String tags;
 
     public String getDescription() {
         return description;
@@ -29,5 +35,13 @@ public class CreativeForm {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public String getTags() {
+        return tags;
+    }
+
+    public void setTags(String tags) {
+        this.tags = tags;
     }
 }

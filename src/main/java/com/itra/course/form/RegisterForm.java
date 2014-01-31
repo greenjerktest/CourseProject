@@ -7,20 +7,20 @@ import javax.validation.constraints.Size;
 
 public class RegisterForm {
 
-    @Size(min=4, max=32)
-    @NotEmpty(message = "Field cannot be empty")
+    @Size(min = 4, max = 32, message = "{validation.size}")
+    @NotEmpty(message = "{validation.not_empty}")
     private String username;
 
     @Email
-    @NotEmpty(message = "Field cannot be empty")
+    @NotEmpty(message = "{validation.not_empty}")
     private String email;
 
-    @Size(min = 4, max = 32)
-    @NotEmpty(message = "Field cannot be empty")
+    @Size(min = 4, max = 32, message = "{validation.size}")
+    @NotEmpty(message = "{validation.not_empty}")
     private String password;
 
-    @Size(min=4, max=32)
-    @NotEmpty(message = "Field cannot be empty")
+    @Size(min = 4, max = 32, message = "{validation.size}")
+    @NotEmpty(message = "{validation.not_empty}")
     private String confirmPassword;
 
     public String getUsername() {

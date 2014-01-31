@@ -5,6 +5,7 @@ import com.itra.course.form.CreativeForm;
 import com.itra.course.model.Creative;
 import com.itra.course.model.User;
 import com.itra.course.service.CreativeService;
+import com.itra.course.service.TagService;
 import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,7 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.*;
-import java.util.List;
+import java.util.Set;
 
 /**
  * User: Greenjerk
@@ -28,6 +29,9 @@ public class CreativeServiceImpl extends GenericManagerImpl<Creative>
     private CreativeDao creativeDao;
 
     @Autowired
+    private TagService tagService;
+
+    @Autowired
     public CreativeServiceImpl(CreativeDao creativeDao) {
         super(creativeDao);
         this.creativeDao = creativeDao;
@@ -35,7 +39,7 @@ public class CreativeServiceImpl extends GenericManagerImpl<Creative>
 
 
     @Override
-    public List getCreatives() {
+    public Set getCreatives() {
         return creativeDao.getCreatives();
     }
 
@@ -51,6 +55,7 @@ public class CreativeServiceImpl extends GenericManagerImpl<Creative>
         creative.setAuthor(author);
         creative.setDescription(creativeForm.getDescription());
         creative.setTitle(creativeForm.getTitle());
+        creative.setTags(tagService.getTagList(creativeForm.getTags()));
 
         if (!logo.isEmpty()) {
             String path = System.getProperty("user.home") + "/creative_logo/"

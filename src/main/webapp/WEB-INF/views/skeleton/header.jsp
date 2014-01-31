@@ -8,7 +8,7 @@
     <div style="margin-top: 15px; text-align: center; min-width: 1000px" class="list-inline">
 
         <form method="post" action="/search" class="navbar-search pull-left" style="margin-left: 1em">
-            <input name="term" class="search-query"
+            <input name="term" class="search-query" id="w-input-search-tag"
                    placeholder="<spring:message code="label.search"/>"/>
         </form>
 
@@ -27,7 +27,32 @@
 
         <div id="nav_lang" class="list-inline pull-right">
             <li><a href="?lang=en" class="badge btn-success">en</a></li>
-            <li><a href="?lang=de" class="badge btn-success">ru</a></li>
+            <li><a href="?lang=ru" class="badge btn-success">ru</a></li>
         </div>
     </div>
 </div>
+
+<script>
+    $(document).ready(function () {
+
+        $('#w-input-search-tag').autocomplete({
+            serviceUrl: '${pageContext.request.contextPath}/getTags',
+            paramName: "query",
+            delimiter: ",",
+            transformResult: function (response) {
+                return {
+
+                    suggestions: $.map($.parseJSON(response), function (item) {
+
+                        return { value: item.tagName, data: item.id };
+                    })
+
+                };
+
+            }
+
+        });
+
+
+    });
+</script>

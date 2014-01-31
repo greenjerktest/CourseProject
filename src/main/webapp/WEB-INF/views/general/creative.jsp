@@ -88,7 +88,7 @@
 
                         <div class="media-body" style="word-wrap: break-word">
                             <h4 class="media-heading"> ${comment.user.username}</h4>
-                                    ${comment.comment}
+                                ${comment.comment}
                         </div>
 
 
@@ -102,8 +102,7 @@
     <security:authorize ifAnyGranted="ROLE_USER, ROLE_ADMIN">
         <form:form method="post" action="/general/creative/${creative.id}/add_comment"
                    commandName="commentForm">
-            <%--<form:errors path="comment"><spring:message--%>
-            <%--code="label.comment_error"/></form:errors>--%>
+            <form:errors cssClass="error" path="comment"/>
             <div class="form-narrow" style="margin-top: 70px">
                 <ul class="media-list">
                     <li class="media">

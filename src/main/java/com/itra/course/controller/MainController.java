@@ -7,7 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.List;
+import java.util.Set;
 
 @Controller
 public class MainController {
@@ -17,7 +17,7 @@ public class MainController {
 
     @RequestMapping(value = "/")
     public ModelAndView home(ModelAndView mav) {
-        List<Creative> creatives = creativeService.getCreatives();
+        Set<Creative> creatives = creativeService.getCreatives();
         mav.addObject("creatives", creatives);
         mav.setViewName("general/main");
         return mav;

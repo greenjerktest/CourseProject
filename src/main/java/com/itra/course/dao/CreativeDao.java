@@ -2,7 +2,7 @@ package com.itra.course.dao;
 
 import com.itra.course.model.Creative;
 
-import java.util.List;
+import java.util.HashSet;
 
 /**
  * User: Greenjerk
@@ -11,7 +11,9 @@ import java.util.List;
  */
 public interface CreativeDao extends GenericDao<Creative> {
 
-    public List getCreatives();
+    public HashSet<Creative> getCreatives();
+
     public Creative getCreative(long id);
+
     public long addCreative(Creative creative);
 }

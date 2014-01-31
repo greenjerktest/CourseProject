@@ -8,15 +8,15 @@ import javax.validation.constraints.Size;
 public class UserForm {
 
     @Email
-    @NotEmpty
+    @NotEmpty(message = "{validation.not_empty}")
     private String email;
 
-    @NotEmpty
-    @Size(min = 4, max = 20)
+    @Size(min = 4, max = 20, message = "{validation.size}")
+    @NotEmpty(message = "{validation.not_empty}")
     private String password;
 
-    @NotEmpty
-    @Size(min=4, max=32)
+    @Size(min = 4, max = 32, message = "{validation.size}")
+    @NotEmpty(message = "{validation.not_empty}")
     private String confirmPassword;
 
     public String getConfirmPassword() {

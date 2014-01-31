@@ -22,11 +22,13 @@
 
         <h4><spring:message code="label.profile"/></h4>
 
+        <form:errors path="*" cssClass="errorblock" element="div"/>
+
         <div class="form-group">
             <form:label path="email"><spring:message
                     code="label.email"/></form:label>
-            <form:errors path="email" cssClass="label-danger"><spring:message
-                    code="label.email_error"/></form:errors>
+            <br/>
+            <form:errors cssClass="error" path="email"/>
             <div class="col-lg-10">
                 <form:input path="email" cssClass="form-control"/>
             </div>
@@ -35,8 +37,8 @@
         <div class="form-group">
             <form:label path="password"><spring:message
                     code="label.password"/></form:label>
-            <form:errors path="password"><spring:message
-                    code="label.password_error"/></form:errors>
+            <br/>
+            <form:errors cssClass="error" path="password"/>
             <div class="col-lg-10">
                 <form:password path="password" cssClass="form-control"/>
             </div>
@@ -45,8 +47,7 @@
         <div class="form-group">
             <form:label path="confirmPassword"><spring:message
                     code="label.confirm_password"/></form:label>
-            <form:errors path="confirmPassword"><spring:message
-                    code="label.re_password_error"/></form:errors>
+            <form:errors cssClass="error" path="confirmPassword"/>
             <div class="col-lg-10">
                 <form:password path="confirmPassword" cssClass="form-control"/>
             </div>

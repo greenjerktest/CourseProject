@@ -11,10 +11,11 @@ import javax.validation.constraints.Size;
  */
 public class HeadForm {
 
-    @Size(min = 3, max = 255)
+    @Size(min = 3, max = 255, message = "{validation.size}")
+    @NotEmpty(message = "{validation.not_empty}")
     private String title;
 
-    @NotEmpty
+    @NotEmpty(message = "{validation.not_empty}")
     private String content;
 
     public String getContent() {

@@ -2,13 +2,13 @@ package com.itra.course.dao.hibernate;
 
 import com.itra.course.dao.GenericDao;
 import com.itra.course.util.HibernateSearchTools;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.analysis.standard.StandardAnalyzer;
 import org.apache.lucene.queryParser.ParseException;
 import org.apache.lucene.util.Version;
-import org.hibernate.*;
+import org.hibernate.HibernateException;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.hibernate.search.FullTextSession;
 import org.hibernate.search.Search;
 import org.hibernate.search.SearchException;
@@ -20,7 +20,6 @@ import java.util.List;
 
 public class GenericDaoImpl<T> implements GenericDao<T> {
 
-    protected final Log log = LogFactory.getLog(getClass());
     private Class<T> persistentClass;
     @Resource
     private SessionFactory sessionFactory;

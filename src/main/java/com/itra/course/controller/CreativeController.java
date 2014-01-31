@@ -3,9 +3,11 @@ package com.itra.course.controller;
 import com.itra.course.form.CommentForm;
 import com.itra.course.form.CreativeForm;
 import com.itra.course.model.Creative;
+import com.itra.course.model.Tag;
 import com.itra.course.model.User;
 import com.itra.course.service.CommentService;
 import com.itra.course.service.CreativeService;
+import com.itra.course.service.TagService;
 import com.itra.course.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -18,6 +20,7 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.validation.Valid;
 import java.io.IOException;
 import java.security.Principal;
+import java.util.List;
 
 /**
  * User: Greenjerk
@@ -36,6 +39,9 @@ public class CreativeController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private TagService tagService;
 
 
     @RequestMapping(value = "general/creative/{creativeId}")
@@ -84,6 +90,14 @@ public class CreativeController {
         return mav;
     }
 
+    @RequestMapping(value = "/getTags", method = RequestMethod.GET)
+    public
+    @ResponseBody
+    List<Tag> getTags(@RequestParam String query) {
+
+        return tagService.searchTag(query);
+    }
+
     @RequestMapping(value = "user/creative/new", method = RequestMethod.POST)
     public ModelAndView createCreativePost(
             ModelAndView mav,
@@ -109,7 +123,7 @@ public class CreativeController {
     @RequestMapping(value = "general/{creativeId}/logo",
             method = RequestMethod.GET,
             produces = MediaType.IMAGE_PNG_VALUE)
-    public byte[] useAvatar( @PathVariable("creativeId") long creativeId)
+    public byte[] useAvatar(@PathVariable("creativeId") long creativeId)
             throws IOException {
         Creative creative = creativeService.getCreative(creativeId);
         return creativeService.getCurrentLogo(creative);

@@ -2,8 +2,6 @@ package com.itra.course.service.impl;
 
 import com.itra.course.dao.GenericDao;
 import com.itra.course.service.GenericManager;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -13,7 +11,6 @@ import java.util.List;
 @Service
 public class GenericManagerImpl<T> implements GenericManager<T> {
 
-    protected final Log log = LogFactory.getLog(getClass());
     protected GenericDao<T> dao;
 
     public GenericManagerImpl() {
