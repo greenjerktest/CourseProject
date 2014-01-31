@@ -1,6 +1,8 @@
 package com.itra.course.controller;
 
+import com.itra.course.model.Tag;
 import com.itra.course.service.SearchService;
+import com.itra.course.service.TagService;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -8,9 +10,11 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 /**
  * User: Greenjerk
@@ -23,6 +27,8 @@ public class SearchController {
 
     @Autowired
     private SearchService searchService;
+    @Autowired
+    private TagService tagService;
 
     @RequestMapping(value = "search")
     public ModelAndView search(ModelAndView mav,
@@ -50,6 +56,14 @@ public class SearchController {
         mav.addObject("creativeList", searchService.search(term));
         mav.setViewName("general/search");
         return mav;
+    }
+
+    @RequestMapping(value = "/getTags", method = RequestMethod.GET)
+    public
+    @ResponseBody
+    List<Tag> getTags(@RequestParam String query) {
+
+        return tagService.searchTag(query);
     }
 
 }

@@ -60,7 +60,7 @@ public class AccountController {
 
         if (!r.getPassword().equals(r.getConfirmPassword())) {
             result.addError(new FieldError("registerForm", "password",
-                    "Retype passwords to match"));
+                    "Retype passwords to match")); // TODO: finish it
             mav.setViewName("anonymous/register");
             return mav;
         }

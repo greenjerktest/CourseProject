@@ -3,11 +3,9 @@ package com.itra.course.controller;
 import com.itra.course.form.CommentForm;
 import com.itra.course.form.CreativeForm;
 import com.itra.course.model.Creative;
-import com.itra.course.model.Tag;
 import com.itra.course.model.User;
 import com.itra.course.service.CommentService;
 import com.itra.course.service.CreativeService;
-import com.itra.course.service.TagService;
 import com.itra.course.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -20,7 +18,6 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.validation.Valid;
 import java.io.IOException;
 import java.security.Principal;
-import java.util.List;
 
 /**
  * User: Greenjerk
@@ -33,16 +30,10 @@ public class CreativeController {
 
     @Autowired
     private CreativeService creativeService;
-
     @Autowired
     private CommentService commentService;
-
     @Autowired
     private UserService userService;
-
-    @Autowired
-    private TagService tagService;
-
 
     @RequestMapping(value = "general/creative/{creativeId}")
     public ModelAndView creative(ModelAndView mav,
@@ -88,14 +79,6 @@ public class CreativeController {
         mav.addObject("creativeForm", new CreativeForm());
         mav.setViewName("user/create_creative");
         return mav;
-    }
-
-    @RequestMapping(value = "/getTags", method = RequestMethod.GET)
-    public
-    @ResponseBody
-    List<Tag> getTags(@RequestParam String query) {
-
-        return tagService.searchTag(query);
     }
 
     @RequestMapping(value = "user/creative/new", method = RequestMethod.POST)
