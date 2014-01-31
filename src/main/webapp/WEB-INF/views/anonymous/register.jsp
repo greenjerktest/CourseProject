@@ -4,7 +4,7 @@
 <div class="container">
 
     <form:form method="post" action="/anonymous/register" commandName="registerForm"
-               class="form-narrow form-horizontal">
+               class="form-narrow form-horizontal" cssStyle="margin-top: 50px">
 
         <h2><spring:message code="label.registration"/></h2>
 

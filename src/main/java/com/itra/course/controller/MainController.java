@@ -1,6 +1,5 @@
 package com.itra.course.controller;
 
-import com.itra.course.model.Creative;
 import com.itra.course.service.CreativeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,7 +16,7 @@ public class MainController {
 
     @RequestMapping(value = "/")
     public ModelAndView home(ModelAndView mav) {
-        Set<Creative> creatives = creativeService.getCreatives();
+        Set creatives = creativeService.getCreatives();
         mav.addObject("creatives", creatives);
         mav.setViewName("general/main");
         return mav;

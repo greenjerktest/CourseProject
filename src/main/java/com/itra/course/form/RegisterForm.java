@@ -3,6 +3,7 @@ package com.itra.course.form;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 public class RegisterForm {
@@ -17,6 +18,8 @@ public class RegisterForm {
 
     @Size(min = 4, max = 32, message = "{validation.size}")
     @NotEmpty(message = "{validation.not_empty}")
+    @Pattern(regexp = "((?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%]).{6,20})",
+            message = "{validation.password}")
     private String password;
 
     @Size(min = 4, max = 32, message = "{validation.size}")

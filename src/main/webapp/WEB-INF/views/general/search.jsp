@@ -3,8 +3,12 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 
 <div class="container">
-
-    <H2 style="margin-left: 5em"><spring:message code="label.found"/></H2>
+    <c:if test="${not empty creativeList}">
+        <H2 style="margin-left: 5em"><spring:message code="label.found"/></H2>
+    </c:if>
+    <c:if test="${empty creativeList}">
+        <H2 style="margin-left: 5em"><spring:message code="label.empty"/></H2>
+    </c:if>
 
     <c:forEach var="creative" items="${creativeList}">
 

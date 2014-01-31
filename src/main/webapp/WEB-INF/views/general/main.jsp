@@ -4,11 +4,14 @@
 
 <div class="container">
 
-    <H2 style="margin-left: 5em"><spring:message code="label.creatives"/></H2>
-
-    <div class="pull-left">
-        <a href="/user/creative/new"><spring:message code="label.create"/></a>
+    <div class="list-inline">
+        <li><a class="btn btn-primary btn-sm"
+               style="margin-bottom: 10px"
+               href="/user/creative/new"><spring:message code="label.create"/></a></li>
+        <li><H2 style="margin-left: 3em"><spring:message code="label.creatives"/></H2></li>
     </div>
+
+    <br/>
 
     <c:forEach var="creative" items="${creatives}">
 

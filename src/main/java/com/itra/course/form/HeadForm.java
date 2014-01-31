@@ -9,6 +9,7 @@ import javax.validation.constraints.Size;
  * Date: 28.01.14
  * Time: 11:28
  */
+
 public class HeadForm {
 
     @Size(min = 3, max = 255, message = "{validation.size}")

@@ -5,6 +5,7 @@ import com.itra.course.form.UserForm;
 import com.itra.course.model.User;
 import com.itra.course.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -17,9 +18,13 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.validation.Valid;
 import java.io.IOException;
 import java.security.Principal;
+import java.util.Locale;
 
 @Controller
 public class AccountController {
+
+    @Autowired
+    private MessageSource messageSource;
 
     @Autowired
     private UserService userService;
@@ -51,23 +56,22 @@ public class AccountController {
     @RequestMapping(value = "anonymous/register", method = RequestMethod.POST)
     public ModelAndView registerPost(
             ModelAndView mav,
+            Locale locale,
             @ModelAttribute("registerForm") @Valid RegisterForm r,
             BindingResult result) {
-        if (result.hasErrors()) {
-            mav.setViewName("anonymous/register");
-            return mav;
-        }
 
         if (!r.getPassword().equals(r.getConfirmPassword())) {
+
             result.addError(new FieldError("registerForm", "password",
-                    "Retype passwords to match")); // TODO: finish it
-            mav.setViewName("anonymous/register");
-            return mav;
+                    messageSource.getMessage("validation.different_pass", null, locale)));
         }
 
         if ((userService.getUserByName(r.getUsername())) != null) {
             result.addError(new FieldError("registerForm", "username",
-                    "{duplicate_name}")); // TODO: finish it
+                    messageSource.getMessage("validation.duplicate_name", null, locale)));
+        }
+
+        if (result.hasErrors()) {
             mav.setViewName("anonymous/register");
             return mav;
         }
@@ -101,10 +105,10 @@ public class AccountController {
     }
 
     @RequestMapping(value = "user/profile/avatar", method = RequestMethod.POST)
-    public ModelAndView avatarUpload(Principal principal,
-                                     @RequestParam("file") MultipartFile file,
-                                     ModelAndView mav)
-            throws IOException {
+    public ModelAndView avatarUpload(
+            Principal principal,
+            @RequestParam("file") MultipartFile file,
+            ModelAndView mav) throws IOException {
 
         User user = userService.getUserByName(principal.getName());
         userService.setAvatarRef(user, file);
@@ -115,16 +119,17 @@ public class AccountController {
     @RequestMapping(value = "user/profile", method = RequestMethod.POST)
     public ModelAndView profilePost(
             ModelAndView mav,
+            Locale locale,
             Principal principal,
             @ModelAttribute("userForm") @Valid UserForm form,
             BindingResult result) {
-        if (result.hasErrors()) {
-            mav.setViewName("user/profile");
-            return mav;
-        }
+
         if (!form.getPassword().equals(form.getConfirmPassword())) {
-            result.addError(new FieldError("registerForm", "password",
-                    "Retype passwords to match"));
+            result.addError(new FieldError("registerForm", "username",
+                    messageSource.getMessage("validation.different_pass", null, locale)));
+        }
+
+        if (result.hasErrors()) {
             mav.setViewName("user/profile");
             return mav;
         }

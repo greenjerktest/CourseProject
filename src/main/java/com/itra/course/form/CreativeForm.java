@@ -9,6 +9,7 @@ import javax.validation.constraints.Size;
  * Date: 27.01.14
  * Time: 20:52
  */
+
 public class CreativeForm {
 
     @Size(min = 3, max = 64, message = "{validation.size}")
