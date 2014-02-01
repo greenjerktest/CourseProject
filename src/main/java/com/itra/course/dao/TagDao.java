@@ -7,7 +7,7 @@ import com.itra.course.model.Tag;
  * Date: 31.01.14
  * Time: 12:35
  */
-public interface TagDao extends GenericDao<Tag> {
+public interface TagDao extends GenericDao<Tag, Long> {
 
     public Tag getTagByName(String tagName);
 

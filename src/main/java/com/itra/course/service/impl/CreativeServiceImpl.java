@@ -13,7 +13,6 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.*;
-import java.util.Set;
 
 /**
  * User: Greenjerk
@@ -23,7 +22,7 @@ import java.util.Set;
 
 @Transactional
 @Service
-public class CreativeServiceImpl extends GenericManagerImpl<Creative>
+public class CreativeServiceImpl extends GenericManagerImpl<Creative, Long>
         implements CreativeService {
 
     private CreativeDao creativeDao;
@@ -37,17 +36,6 @@ public class CreativeServiceImpl extends GenericManagerImpl<Creative>
         this.creativeDao = creativeDao;
     }
 
-
-    @Override
-    public Set getCreatives() {
-        return creativeDao.getCreatives();
-    }
-
-    @Override
-    public Creative getCreative(long id) {
-        return creativeDao.getCreative(id);
-    }
-
     @Override
     public long addCreative(CreativeForm creativeForm, MultipartFile logo, User author)
             throws IOException {
@@ -55,7 +43,7 @@ public class CreativeServiceImpl extends GenericManagerImpl<Creative>
         creative.setAuthor(author);
         creative.setDescription(creativeForm.getDescription());
         creative.setTitle(creativeForm.getTitle());
-        creative.setTags(tagService.getTagList(creativeForm.getTags()));
+        creative.setTags(tagService.getTagSet(creativeForm.getTags()));
 
         if (!logo.isEmpty()) {
             String path = System.getProperty("user.home") + "/creative_logo/"

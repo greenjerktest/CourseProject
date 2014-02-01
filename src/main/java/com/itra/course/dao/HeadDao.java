@@ -7,8 +7,6 @@ import com.itra.course.model.Head;
  * Date: 28.01.14
  * Time: 11:34
  */
-public interface HeadDao extends GenericDao<Head> {
-
-    public void addHead(Head head);
+public interface HeadDao extends GenericDao<Head, Long> {
 
 }

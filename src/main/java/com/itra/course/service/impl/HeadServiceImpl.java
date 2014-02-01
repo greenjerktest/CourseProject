@@ -17,7 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Transactional
 @Service
-public class HeadServiceImpl extends GenericManagerImpl<Head> implements HeadService {
+public class HeadServiceImpl extends GenericManagerImpl<Head, Long> implements HeadService {
 
     private HeadDao headDao;
 
@@ -33,6 +33,6 @@ public class HeadServiceImpl extends GenericManagerImpl<Head> implements HeadSer
         head.setTitle(form.getTitle());
         head.setContent(form.getContent());
         head.setCreative(creative);
-        headDao.addHead(head);
+        headDao.save(head);
     }
 }

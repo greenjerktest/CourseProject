@@ -38,7 +38,7 @@ public class CreativeController {
     @RequestMapping(value = "general/creative/{creativeId}")
     public ModelAndView creative(ModelAndView mav,
                                  @PathVariable long creativeId) {
-        Creative creative = creativeService.getCreative(creativeId);
+        Creative creative = creativeService.get(creativeId);
         mav.addObject("creative", creative);
         mav.addObject("commentForm", new CommentForm());
         mav.setViewName("general/creative");
@@ -58,7 +58,7 @@ public class CreativeController {
             return mav;
         }
 
-        Creative creative = creativeService.getCreative(creativeId);
+        Creative creative = creativeService.get(creativeId);
         User author = userService.getUserByName(principal.getName());
         commentService.addComment(creative, commentForm, author);
         return mav;
@@ -69,7 +69,7 @@ public class CreativeController {
     public ModelAndView deleteComment(ModelAndView mav,
                                       @RequestParam long commentId,
                                       @PathVariable("creativeId") String creativeId) {
-        commentService.removeComment(commentId);
+        commentService.remove(commentId);
         mav.setViewName("redirect:/general/creative/{creativeId}");
         return mav;
     }
@@ -108,7 +108,7 @@ public class CreativeController {
             produces = MediaType.IMAGE_PNG_VALUE)
     public byte[] useAvatar(@PathVariable("creativeId") long creativeId)
             throws IOException {
-        Creative creative = creativeService.getCreative(creativeId);
+        Creative creative = creativeService.get(creativeId);
         return creativeService.getCurrentLogo(creative);
     }
 

@@ -2,8 +2,6 @@ package com.itra.course.dao.hibernate;
 
 import com.itra.course.dao.HeadDao;
 import com.itra.course.model.Head;
-import org.hibernate.*;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -13,17 +11,10 @@ import org.springframework.stereotype.Repository;
  */
 
 @Repository
-public class HeadDaoImpl extends GenericDaoImpl<Head>  implements HeadDao {
+public class HeadDaoImpl extends GenericDaoImpl<Head, Long> implements HeadDao {
 
     public HeadDaoImpl() {
         super(Head.class);
     }
 
-    @Autowired
-    private SessionFactory sessionFactory;
-
-    @Override
-    public void addHead(Head head) {
-        sessionFactory.getCurrentSession().save(head);
-    }
 }

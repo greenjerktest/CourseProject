@@ -10,9 +10,8 @@ import com.itra.course.model.User;
  * Date: 27.01.14
  * Time: 11:44
  */
-public interface CommentService  extends GenericManager<Comment> {
+public interface CommentService extends GenericManager<Comment, Long> {
 
     public void addComment(Creative creative, CommentForm commentForm, User author);
-    public void removeComment(long id);
 
 }

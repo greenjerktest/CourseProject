@@ -8,7 +8,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * User: Greenjerk
@@ -18,7 +20,7 @@ import java.util.List;
 
 @Transactional
 @Service
-public class TagServiceImpl extends GenericManagerImpl<Tag> implements TagService {
+public class TagServiceImpl extends GenericManagerImpl<Tag, Long> implements TagService {
 
     private TagDao tagDao;
 
@@ -41,14 +43,14 @@ public class TagServiceImpl extends GenericManagerImpl<Tag> implements TagServic
     }
 
     @Override
-    public List<Tag> getTagList(String tags) {
+    public Set<Tag> getTagSet(String tags) {
 
-        List<Tag> tagList = new ArrayList<>();
+        Set<Tag> tagSet = new HashSet<>();
         String[] tagNameArr = tags.split(",");
         for (int i = 0; i < tagNameArr.length; i++) {
-            tagList.add(tagDao.getTagByName(tagNameArr[i]));
+            tagSet.add(tagDao.getTagByName(tagNameArr[i]));
         }
-        return tagList;
+        return tagSet;
     }
 
 }

@@ -14,7 +14,7 @@ import org.springframework.stereotype.Repository;
  */
 
 @Repository
-public class TagDaoImpl extends GenericDaoImpl<Tag> implements TagDao {
+public class TagDaoImpl extends GenericDaoImpl<Tag, Long> implements TagDao {
 
     @Autowired
     private SessionFactory sessionFactory;

@@ -4,7 +4,6 @@ import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -13,14 +12,14 @@ import java.util.Collection;
 public class User {
 
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
     private long id;
-    @Column(name = "username")
+    @Column(name = "username", nullable = false)
     private String username;
-    @Column(name = "email")
+    @Column(name = "email", nullable = false)
     private String email;
-    @Column(name = "password")
+    @Column(name = "password", nullable = false)
     private String password;
     @Column(name = "enabled")
     private boolean enabled;
@@ -28,14 +27,12 @@ public class User {
     private String authority;
     @Column(name = "avatarRef")
     private String avatarRef;
-
     @OneToMany(fetch = FetchType.EAGER)
-    @JoinColumn(name="author_id")
+    @JoinColumn(name = "author_id")
     @Fetch(value = FetchMode.SUBSELECT)
     private Collection<Creative> creatives = new ArrayList<>();
-
     @OneToMany(fetch = FetchType.EAGER)
-    @JoinColumn(name="user_id")
+    @JoinColumn(name = "user_id")
     @Fetch(value = FetchMode.SUBSELECT)
     private Collection<Comment> comments = new ArrayList<>();
 
@@ -76,7 +73,7 @@ public class User {
     }
 
     public void setPassword(String password) {
-         this.password = password;
+        this.password = password;
     }
 
     public String getAvatarRef() {

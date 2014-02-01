@@ -11,13 +11,11 @@ public class UserForm {
     @Email
     @NotEmpty(message = "{validation.not_empty}")
     private String email;
-
     @Size(min = 4, max = 20, message = "{validation.size}")
     @NotEmpty(message = "{validation.not_empty}")
-    @Pattern(regexp = "((?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%]).{6,20})",
-            message = "{validation.password}")
+    @Pattern(message = "{validation.password}",
+            regexp = "((?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%]).{6,20})")
     private String password;
-
     @Size(min = 4, max = 32, message = "{validation.size}")
     @NotEmpty(message = "{validation.not_empty}")
     private String confirmPassword;

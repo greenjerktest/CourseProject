@@ -51,7 +51,7 @@ public class HeadController {
             return mav;
         }
 
-        Creative creative = creativeService.getCreative(creativeId);
+        Creative creative = creativeService.get(creativeId);
         headService.addHead(headForm, creative);
         mav.setViewName("redirect:/general/creative/{creativeId}");
         return mav;

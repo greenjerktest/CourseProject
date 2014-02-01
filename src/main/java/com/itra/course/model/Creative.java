@@ -8,6 +8,8 @@ import org.hibernate.search.annotations.*;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * User: Greenjerk
@@ -57,7 +59,7 @@ public class Creative {
             joinColumns = {@JoinColumn(name = "creative_id")},
             inverseJoinColumns = {@JoinColumn(name = "tag_id",
                     nullable = false, updatable = false)})
-    private Collection<Tag> tags = new ArrayList<>();
+    private Set<Tag> tags = new HashSet<>();
 
 
     public String getDescription() {
@@ -88,7 +90,7 @@ public class Creative {
         return tags;
     }
 
-    public void setTags(Collection<Tag> tags) {
+    public void setTags(Set<Tag> tags) {
         this.tags = tags;
     }
 

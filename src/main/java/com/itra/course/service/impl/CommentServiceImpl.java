@@ -18,7 +18,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Transactional
 @Service
-public class CommentServiceImpl extends GenericManagerImpl<Comment>
+public class CommentServiceImpl extends GenericManagerImpl<Comment, Long>
         implements CommentService {
 
 
@@ -37,11 +37,7 @@ public class CommentServiceImpl extends GenericManagerImpl<Comment>
         comment.setCreative(creative);
         comment.setComment(commentForm.getComment());
         comment.setUser(author);
-        commentDao.addComment(comment);
+        commentDao.save(comment);
     }
 
-    @Override
-    public void removeComment(long id) {
-        commentDao.removeComment(id);
-    }
 }

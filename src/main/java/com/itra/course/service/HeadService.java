@@ -10,7 +10,7 @@ import com.itra.course.model.Head;
  * Time: 11:31
  */
 
-public interface HeadService extends GenericManager<Head> {
+public interface HeadService extends GenericManager<Head, Long> {
 
     public void addHead(HeadForm form, Creative creative);
 
