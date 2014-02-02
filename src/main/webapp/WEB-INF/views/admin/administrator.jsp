@@ -4,7 +4,7 @@
 
 <div class="container">
     <c:forEach var="user" items="${users}">
-    <div class="form-narrow form-horizontal">
+        <div class="form-narrow form-horizontal">
             <div class="form-group">
                 <table>
                     <tr>
@@ -19,15 +19,30 @@
                            value="<spring:message code="label.delete"/>"
                            class="btn btn-block btn-danger">
                 </form>
-                <form action="<c:url value="/admin/block_user"/>" method="POST">
+
+                <form action="<c:url value="/admin/user_access"/>" method="POST">
                     <input type="hidden" name="username" value="${user.username}">
-                    <input type="submit"
-                           value="<spring:message code="label.block"/>"
-                           class="btn btn-block">
+                    <c:if test="${user.enabled}">
+
+                    </c:if>
+                    <c:choose>
+                        <c:when test="${user.enabled}">
+                            <input type="submit"
+                                   value="<spring:message code="label.lock"/>"
+                                   class="btn btn-block">
+                        </c:when>
+                        <c:otherwise>
+                            <input type="submit"
+                                   value="<spring:message code="label.unlock"/>"
+                                   class="btn btn-block">
+                        </c:otherwise>
+                    </c:choose>
+
                 </form>
+
             </div>
 
 
-    </div>
+        </div>
     </c:forEach>
 </div>

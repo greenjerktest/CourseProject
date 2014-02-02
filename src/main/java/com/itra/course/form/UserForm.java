@@ -13,8 +13,8 @@ public class UserForm {
     private String email;
     @Size(min = 4, max = 20, message = "{validation.size}")
     @NotEmpty(message = "{validation.not_empty}")
-    @Pattern(message = "{validation.password}",
-            regexp = "((?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%]).{6,20})")
+    @Pattern(regexp = "((?=.*[a-z])(?=.*[A-Z]).{6,20})",
+            message = "{validation.password}")
     private String password;
     @Size(min = 4, max = 32, message = "{validation.size}")
     @NotEmpty(message = "{validation.not_empty}")

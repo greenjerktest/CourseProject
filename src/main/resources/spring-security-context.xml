@@ -18,6 +18,7 @@
         <form-login login-page="/anonymous/login" default-target-url="/" always-use-default-target='true'
                     authentication-failure-url="/loginfailed"/>
         <logout logout-success-url="/logout"/>
+        <remember-me key="testKey" token-validity-seconds="2419200" />
     </http>
 
     <authentication-manager>

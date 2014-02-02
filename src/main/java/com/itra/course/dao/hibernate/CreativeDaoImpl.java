@@ -33,10 +33,4 @@ public class CreativeDaoImpl extends GenericDaoImpl<Creative, Long> implements C
         return new ArrayList<>(new HashSet<>(creativeList));
     }
 
-    @Override
-    public long addCreative(Creative creative) {
-        sessionFactory.getCurrentSession().save(creative);
-        return (long) sessionFactory.getCurrentSession().createCriteria(Creative.class)
-                .setProjection(Projections.max("id")).uniqueResult();
-    }
 }

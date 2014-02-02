@@ -18,7 +18,7 @@ public class RegisterForm {
 
     @Size(min = 4, max = 32, message = "{validation.size}")
     @NotEmpty(message = "{validation.not_empty}")
-    @Pattern(regexp = "((?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%]).{6,20})",
+    @Pattern(regexp = "((?=.*[a-z])(?=.*[A-Z]).{6,20})",
             message = "{validation.password}")
     private String password;
 

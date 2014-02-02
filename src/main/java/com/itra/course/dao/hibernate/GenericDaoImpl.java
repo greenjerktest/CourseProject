@@ -70,13 +70,6 @@ public class GenericDaoImpl<T, PK extends Serializable> implements GenericDao<T,
         return new ArrayList<T>(result);
     }
 
-    /**
-     * 全文搜索
-     *
-     * @param searchTerm
-     * @return
-     * @throws SearchException
-     */
     @SuppressWarnings("unchecked")
     public List<T> search(String searchTerm) throws SearchException {
         Session sess = getSession();

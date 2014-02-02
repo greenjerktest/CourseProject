@@ -17,19 +17,20 @@ import java.util.List;
 
 @Transactional
 @Service
-public class UserServiceImpl implements UserService {
+public class UserServiceImpl extends GenericManagerImpl<User, Long> implements UserService {
 
-    @Autowired
     private UserDao userDao;
 
-    public void removeUser(String username) {
-        userDao.removeUser(userDao.getUserByName(username));
+    @Autowired
+    public UserServiceImpl (UserDao userDao) {
+        super(userDao);
+        this.userDao = userDao;
     }
 
     public void blockUser(String username) {
         User user = userDao.getUserByName(username);
         user.setEnabled(!user.isEnabled());
-        userDao.updateUser(user);
+        userDao.save(user);
     }
 
     public void addUser(RegisterForm form) {
@@ -39,24 +40,11 @@ public class UserServiceImpl implements UserService {
         user.setPassword(form.getPassword());
         user.setEnabled(true);
         user.setAuthority("ROLE_USER");
-        userDao.addUser(user);
-    }
-
-    public long updateUser(User user) {
-        userDao.updateUser(user);
-        return user.getId();
-    }
-
-    public List<User> getUsers() {
-        return userDao.getUsers();
+        userDao.save(user);
     }
 
     public List<User> getSimpleUsers() {
         return userDao.getSimpleUsers();
-    }
-
-    public User getUserById(String id) {
-        return userDao.getUserById(id);
     }
 
     public User getUserByName(String username) {
@@ -78,7 +66,7 @@ public class UserServiceImpl implements UserService {
             output.flush();
             output.close();
             user.setAvatarRef(f.getAbsolutePath());
-            userDao.updateUser(user);
+            userDao.save(user);
         }
     }
 

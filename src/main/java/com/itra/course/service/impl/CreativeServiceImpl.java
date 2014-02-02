@@ -59,9 +59,7 @@ public class CreativeServiceImpl extends GenericManagerImpl<Creative, Long>
             }
         }
 
-
-        long id = creativeDao.addCreative(creative);
-        return id;
+        return creativeDao.save(creative).getId();
     }
 
     @Override

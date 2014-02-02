@@ -34,5 +34,13 @@
         <input name="submit" type="submit" class="btn btn-default"
                value="<spring:message code="label.login"/>"/>
 
+        <div class="form-group" style="margin-top: 2em">
+            <input id="remember_me" type='checkbox'
+                   name='_spring_security_remember_me' style="margin-left: 2em"/>
+            <label for="remember_me" class="inline" style="margin-left: 5px; font-weight: normal">
+                <spring:message code="label.remember"/>
+            </label>
+        </div>
+
     </form>
 </div>

@@ -13,5 +13,4 @@ public interface CreativeDao extends GenericDao<Creative, Long> {
 
     public List<Creative> getAll();
 
-    public long addCreative(Creative creative);
 }
