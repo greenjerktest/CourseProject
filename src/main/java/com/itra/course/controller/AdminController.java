@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
 import java.security.Principal;
 import java.util.List;
 
@@ -28,12 +29,13 @@ public class AdminController {
 
     @RequestMapping(value = "admin/delete_user", method = RequestMethod.POST)
     public ModelAndView deletePost(ModelAndView mav, @RequestParam String username) {
-        userService.removeUser(username);
+        long id = userService.getUserByName(username).getId();
+        userService.remove(id);
         mav.setViewName("redirect:/admin");
         return mav;
     }
 
-    @RequestMapping(value = "admin/block_user", method = RequestMethod.POST)
+    @RequestMapping(value = "admin/user_access", method = RequestMethod.POST)
     public ModelAndView blockPost(ModelAndView mav, @RequestParam String username) {
         userService.blockUser(username);
         mav.setViewName("redirect:/admin");
