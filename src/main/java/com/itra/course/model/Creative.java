@@ -39,21 +39,21 @@ public class Creative {
     @Column
     private String logoRef;
 
-    @OneToMany(fetch = FetchType.EAGER)
+    @OneToMany(fetch = FetchType.LAZY)
     @JoinColumn(name = "creative_id")
     @Fetch(value = FetchMode.SUBSELECT)
     private Collection<Head> heads = new ArrayList<>();
 
-    @OneToMany(fetch = FetchType.EAGER)
+    @OneToMany(fetch = FetchType.LAZY)
     @JoinColumn(name = "creative_id")
     @Fetch(value = FetchMode.SUBSELECT)
     private Collection<Comment> comments = new ArrayList<>();
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "author_id")
     User author;
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "creative_tag",
             joinColumns = {@JoinColumn(name = "creative_id")},
             inverseJoinColumns = {@JoinColumn(name = "tag_id")})

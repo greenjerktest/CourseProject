@@ -27,7 +27,7 @@ public class Tag {
             analyzer = @Analyzer(impl = StandardAnalyzer.class))
     private String tagName;
 
-    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "tags")
+    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "tags")
     private Set<Creative> creatives = new HashSet<>();
 
     public Set<Creative> getCreatives() {

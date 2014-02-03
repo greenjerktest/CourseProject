@@ -30,7 +30,7 @@ public class Head {
             analyzer = @Analyzer(impl = StandardAnalyzer.class))
     private String content;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "creative_id")
     Creative creative;
 

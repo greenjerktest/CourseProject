@@ -34,12 +34,12 @@ public class User {
     @Column(name = "avatarRef")
     private String avatarRef;
 
-    @OneToMany(fetch = FetchType.EAGER)
+    @OneToMany(fetch = FetchType.LAZY)
     @JoinColumn(name = "author_id")
     @Fetch(value = FetchMode.SUBSELECT)
     private Collection<Creative> creatives = new ArrayList<>();
 
-    @OneToMany(fetch = FetchType.EAGER)
+    @OneToMany(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     @Fetch(value = FetchMode.SUBSELECT)
     private Collection<Comment> comments = new ArrayList<>();
