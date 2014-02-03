@@ -16,7 +16,6 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/pagedown/css/demo.css" type="text/css"/>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/courseproject.css" type="text/css"/>
 
-
     <script src="${pageContext.request.contextPath}/resources/js/bootstrap.js"></script>
     <script src="${pageContext.request.contextPath}/resources/js/jquery-2.1.0.min.js"></script>
     <script src="${pageContext.request.contextPath}/resources/js/jquery.autocomplete.min.js"></script>

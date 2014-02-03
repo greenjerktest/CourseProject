@@ -22,17 +22,16 @@ import java.util.Set;
 public class Creative {
 
     @Id
-    @Column(name = "id")
     @DocumentId
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    @Column
+    @Column(nullable = false)
     @Field(index = Index.YES, analyze = Analyze.YES, store = Store.NO,
             analyzer = @Analyzer(impl = StandardAnalyzer.class))
     private String title;
 
-    @Column(length = 1000)
+    @Column(length = 1000, nullable = false)
     @Field(index = Index.YES, analyze = Analyze.YES, store = Store.NO,
             analyzer = @Analyzer(impl = StandardAnalyzer.class))
     private String description;
@@ -51,14 +50,13 @@ public class Creative {
     private Collection<Comment> comments = new ArrayList<>();
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "author_id", nullable = false)
+    @JoinColumn(name = "author_id")
     User author;
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "creative_tag",
             joinColumns = {@JoinColumn(name = "creative_id")},
-            inverseJoinColumns = {@JoinColumn(name = "tag_id",
-                    nullable = false, updatable = false)})
+            inverseJoinColumns = {@JoinColumn(name = "tag_id")})
     private Set<Tag> tags = new HashSet<>();
 
 

@@ -2,6 +2,7 @@ package com.itra.course.form;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 /**
@@ -20,6 +21,7 @@ public class CreativeForm {
     @NotEmpty(message = "{validation.not_empty}")
     private String description;
 
+    @NotNull
     private String tags;
 
     public String getDescription() {

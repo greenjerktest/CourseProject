@@ -18,12 +18,11 @@ import java.util.Set;
 @Indexed
 public class Tag {
 
-    @Column
     @Id
     @DocumentId
     private long id;
 
-    @Column
+    @Column(nullable = false)
     @Field(index = Index.YES, analyze = Analyze.YES, store = Store.YES,
             analyzer = @Analyzer(impl = StandardAnalyzer.class))
     private String tagName;

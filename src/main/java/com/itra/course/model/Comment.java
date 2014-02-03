@@ -16,22 +16,21 @@ import javax.persistence.*;
 public class Comment {
 
     @Id
-    @Column(name = "id")
     @DocumentId
     @GeneratedValue(strategy=GenerationType.AUTO)
     private long id;
 
-    @Column
+    @Column(nullable = false)
     @Field(index=Index.YES, analyze= Analyze.YES, store=Store.NO,
             analyzer = @Analyzer(impl = StandardAnalyzer.class))
     private String comment;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "creative_id", nullable = false)
+    @JoinColumn(name = "creative_id")
     Creative creative;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "user_id", nullable = false)
+    @JoinColumn(name = "user_id")
     User user;
 
     public String getComment() {

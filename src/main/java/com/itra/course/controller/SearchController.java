@@ -63,7 +63,8 @@ public class SearchController {
     @ResponseBody
     List<Tag> getTags(@RequestParam String query) {
 
-        return tagService.searchTag(query);
+        List<Tag> tagList = tagService.searchTag(query);
+        return  tagList;
     }
 
 }
