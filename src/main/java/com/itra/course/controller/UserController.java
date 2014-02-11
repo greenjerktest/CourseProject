@@ -89,7 +89,7 @@ public class UserController {
         User user = userService.getUserByName(principal.getName());
         user.setEmail(form.getEmail());
         user.setPassword(form.getPassword());
-        userService.updateUser(user);
+        userService.save(user);
         mav.setViewName("redirect:/");
         return mav;
     }

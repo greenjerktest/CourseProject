@@ -31,7 +31,7 @@ public class Head {
     private String content;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "creative_id")
+    @JoinColumn(name = "creative_id", nullable = false)
     Creative creative;
 
     public String getContent() {
