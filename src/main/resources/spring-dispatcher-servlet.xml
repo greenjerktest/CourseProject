@@ -1,11 +1,17 @@
 <?xml  version="1.0" encoding="UTF-8"?>
 <beans xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:aop="http://www.springframework.org/schema/aop"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns="http://www.springframework.org/schema/beans"
        xmlns:context="http://www.springframework.org/schema/context"
-       xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
-		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+       xsi:schemaLocation="http://www.springframework.org/schema/mvc
+       http://www.springframework.org/schema/mvc/spring-mvc.xsd
+		http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context
+		http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/aop
+		 http://www.springframework.org/schema/aop/spring-aop.xsd">
 
     <mvc:annotation-driven/>
 
@@ -13,7 +19,6 @@
 
     <context:component-scan base-package="com.itra.course.controller"/>
 
-    <!-- Файл с настройками ресурсов для работы с данными (Data Access Resources) -->
     <import resource="spring-datasource-config.xml"/>
 
     <mvc:resources location="/resources/" mapping="/resources/**"/>
@@ -61,6 +66,14 @@
         </bean>
     </mvc:interceptors>
 
-    <context:component-scan base-package="com.itra.course.controller"/>
+    <bean id="logUtil" class="com.itra.course.util.LogUtil"/>
+    <aop:config>
+        <aop:pointcut expression="execution(* com.itra.course.service.impl.*.*(..))"
+                      id="logPointcut"/>
+        <aop:aspect id="logUtilAspect" ref="logUtil">
+            <aop:before method="before" pointcut-ref="logPointcut"/>
+            <aop:after-returning method="afterReturn" pointcut-ref="logPointcut"/>
+        </aop:aspect>
+    </aop:config>
 
 </beans>
