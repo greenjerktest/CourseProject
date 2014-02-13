@@ -19,6 +19,9 @@
     <script src="${pageContext.request.contextPath}/resources/js/bootstrap.js"></script>
     <script src="${pageContext.request.contextPath}/resources/js/jquery-2.1.0.min.js"></script>
     <script src="${pageContext.request.contextPath}/resources/js/jquery.autocomplete.min.js"></script>
+    <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+    <script src="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css"></script>
+    <script src="${pageContext.request.contextPath}/resources/js/jquery.cookies.2.2.0.js"></script>
     <script src="${pageContext.request.contextPath}/resources/js/bootstrap-collapse.js"></script>
     <script src="${pageContext.request.contextPath}/resources/pagedown/Markdown.Converter.js"></script>
     <script src="${pageContext.request.contextPath}/resources/pagedown/Markdown.Sanitizer.js"></script>

@@ -4,6 +4,31 @@
 <%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
 
 
+<script>
+    $(function () {
+        var root = $('#sortable');
+        $("#sortable").sortable({
+            revert: true
+        });
+        $('> *', root).each(function (index) {
+            this.id = 'item-' + index;
+        });
+        root.sortable({
+            'update': function (event, ui) {
+                var order = $(this).sortable('serialize');
+                $.cookies.set('sortable', order);
+            }
+        });
+        var c = $.cookies.get('sortable');
+        if (c) {
+            $.each(c.split('&'), function () {
+                var id = this.replace('[]=', '-');
+                $('#' + id).appendTo(root);
+            });
+        }
+    });
+</script>
+
 <div class="container">
 
     <div style="display: inline-block; margin-bottom: 20px">
@@ -13,50 +38,54 @@
         <H2 style="margin-left: 5em; display: block; float: left">
             <spring:message code="label.heads"/></H2>
     </div>
-    <c:forEach var="head" items="${creative.heads}">
-        <div class="container-fluid" style="text-align: center">
-            <div class="accordion" id="accordion${head.id}">
-                <div class="accordion-group">
-                    <div class="accordion-heading">
-                        <a class="accordion-toggle btn btn-group-lg badge panel-title"
-                           data-toggle="collapse"
-                           data-parent="#accordion${head.id}" href="#collapse${head.id}">
-                                ${head.title}
-                        </a>
-                    </div>
-                    <div id="collapse${head.id}" class="accordion-body collapse">
-                        <div class="accordion-inner">
 
-                            <div class="wmd-panel">
-                                <textarea id="wmd-input${head.id}"
-                                          class="wmd-input hidden">${head.content}
-                                </textarea>
+    <ul id="sortable">
+        <c:forEach var="head" items="${creative.heads}">
+            <li class="ui-state-default nav">
+                <div class="container-fluid" style="text-align: center">
+                    <div class="accordion" id="accordion${head.id}">
+                        <div class="accordion-group">
+                            <div class="accordion-heading">
+                                <a class="accordion-toggle btn btn-group-lg badge panel-title"
+                                   data-toggle="collapse"
+                                   data-parent="#accordion${head.id}" href="#collapse${head.id}">
+                                        ${head.title}
+                                </a>
                             </div>
-                            <div id="wmd-preview${head.id}" class="wmd-panel wmd-preview well"></div>
+                            <div id="collapse${head.id}" class="accordion-body collapse">
+                                <div class="accordion-inner">
 
-                            <script type="text/javascript">
-                                (function () {
-                                    var converter1 = Markdown.getSanitizingConverter();
+                                    <div class="wmd-panel">
+                                        <textarea id="wmd-input${head.id}"
+                                                  class="wmd-input hidden">${head.content}
+                                        </textarea>
+                                    </div>
+                                    <div id="wmd-preview${head.id}" class="wmd-panel wmd-preview well"></div>
 
-                                    converter1.hooks.chain("preBlockGamut", function (text, rbg) {
-                                        return text.replace(/^ {0,3}""" *\n((?:.*?\n)+?) {0,3}""" *$/gm, function (whole, inner) {
-                                            return "<blockquote>" + rbg(inner) + "</blockquote>\n";
-                                        });
-                                    });
+                                    <script type="text/javascript">
+                                        (function () {
+                                            var converter1 = Markdown.getSanitizingConverter();
 
-                                    var editor1 = new Markdown.Editor(converter1, ${head.id});
-                                    editor1.run();
+                                            converter1.hooks.chain("preBlockGamut", function (text, rbg) {
+                                                return text.replace(/^ {0,3}""" *\n((?:.*?\n)+?) {0,3}""" *$/gm, function (whole, inner) {
+                                                    return "<blockquote>" + rbg(inner) + "</blockquote>\n";
+                                                });
+                                            });
 
-                                })();
-                            </script>
+                                            var editor1 = new Markdown.Editor(converter1, ${head.id});
+                                            editor1.run();
 
+                                        })();
+                                    </script>
+
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-
-            </div>
-        </div>
-    </c:forEach>
+            </li>
+        </c:forEach>
+    </ul>
 
     <c:if test="${creative.author.username == pageContext['request'].userPrincipal.name}">
         <div class="label control-label">
