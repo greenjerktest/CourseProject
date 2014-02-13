@@ -55,26 +55,12 @@
                             <div id="collapse${head.id}" class="accordion-body collapse">
                                 <div class="accordion-inner">
 
-                                    <div class="wmd-panel">
-                                        <textarea id="wmd-input${head.id}"
-                                                  class="wmd-input hidden">${head.content}
-                                        </textarea>
-                                    </div>
-                                    <div id="wmd-preview${head.id}" class="wmd-panel wmd-preview well"></div>
+                                    <div id="content${head.id}" class="wmd-panel wmd-preview well">${head.content}</div>
 
                                     <script type="text/javascript">
                                         (function () {
-                                            var converter1 = Markdown.getSanitizingConverter();
-
-                                            converter1.hooks.chain("preBlockGamut", function (text, rbg) {
-                                                return text.replace(/^ {0,3}""" *\n((?:.*?\n)+?) {0,3}""" *$/gm, function (whole, inner) {
-                                                    return "<blockquote>" + rbg(inner) + "</blockquote>\n";
-                                                });
-                                            });
-
-                                            var editor1 = new Markdown.Editor(converter1, ${head.id});
-                                            editor1.run();
-
+                                            var converter = new Markdown.Converter();
+                                            $("#content${head.id}").html(converter.makeHtml($("#content${head.id}").html()));
                                         })();
                                     </script>
 
