@@ -63,7 +63,7 @@ public class UserController {
             ModelAndView mav) throws IOException {
 
         User user = userService.getUserByName(principal.getName());
-        userService.setAvatarRef(user, file);
+        userService.setAvatar(user, file);
         mav.setViewName("redirect:/user/profile");
         return mav;
     }

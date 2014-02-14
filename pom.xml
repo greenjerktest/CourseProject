@@ -38,7 +38,7 @@
         <net.sf.ehcache.configurationResourceName>/ehcache.xml</net.sf.ehcache.configurationResourceName>
         <hibernate.cache.use_structured_entries>true</hibernate.cache.use_structured_entries>
         <hibernate.search.default.directory_provider>filesystem</hibernate.search.default.directory_provider>
-        <hibernate.search.default.indexBase>c:/index</hibernate.search.default.indexBase>
+        <hibernate.search.default.indexBase>${project.basedir}/index</hibernate.search.default.indexBase>
         <hibernate.search.indexing_strategy>event</hibernate.search.indexing_strategy>
 
         <encoding>utf-8</encoding>

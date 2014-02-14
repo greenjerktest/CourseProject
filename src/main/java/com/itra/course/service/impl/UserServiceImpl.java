@@ -51,35 +51,19 @@ public class UserServiceImpl extends GenericManagerImpl<User, Long> implements U
         return userDao.getUserByName(username);
     }
 
-    public String getAvatarRef(String username) {
-        return userDao.getUserByName(username).getAvatarRef();
-    }
-
-    public void setAvatarRef(User user, MultipartFile avatar) throws IOException {
-        String path = System.getProperty("user.home") + "/avatars/"
-                + user.getUsername();
-        File file = new File(path);
-        if (file.mkdirs() || file.exists()) {
-            File f = new File(path + "/" + avatar.getOriginalFilename());
-            OutputStream output = new FileOutputStream(f);
-            output.write(IOUtils.toByteArray(avatar.getInputStream()));
-            output.flush();
-            output.close();
-            user.setAvatarRef(f.getAbsolutePath());
+    public void setAvatar(User user, MultipartFile avatar) throws IOException {
+            user.setAvatar(IOUtils.toByteArray(avatar.getInputStream()));
             userDao.save(user);
-        }
+
     }
 
     public byte[] getCurrentAvatar(User user) throws IOException {
-
-        if (user.getAvatarRef() == null) {
+        byte[] avatar = user.getAvatar();
+        if (avatar == null) {
             InputStream in = this.getClass().getClassLoader()
                     .getResourceAsStream("image/default-avatar.png");
-
             return IOUtils.toByteArray(in);
         }
-
-        InputStream in = new FileInputStream(user.getAvatarRef());
-        return IOUtils.toByteArray(in);
+        return avatar;
     }
 }

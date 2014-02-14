@@ -14,7 +14,6 @@ public interface UserService extends GenericManager<User, Long> {
     public void blockUser(String username);
     public List<User> getSimpleUsers();
     public User getUserByName(String username);
-    public String getAvatarRef(String username);
-    public void setAvatarRef(User user, MultipartFile file) throws IOException;
+    public void setAvatar(User user, MultipartFile file) throws IOException;
     public byte[] getCurrentAvatar(User user) throws IOException;
 }

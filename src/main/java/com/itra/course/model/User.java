@@ -13,26 +13,26 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id")
+    @Column
     private long id;
 
-    @Column(name = "username", nullable = false)
+    @Column(nullable = false)
     private String username;
 
-    @Column(name = "email", nullable = false)
+    @Column(nullable = false)
     private String email;
 
-    @Column(name = "password", nullable = false)
+    @Column(nullable = false)
     private String password;
 
-    @Column(name = "enabled")
+    @Column
     private boolean enabled;
 
-    @Column(name = "authority")
+    @Column
     private String authority;
 
-    @Column(name = "avatarRef")
-    private String avatarRef;
+    @Lob
+    private byte[] avatar;
 
     @OneToMany(fetch = FetchType.LAZY)
     @JoinColumn(name = "author_id")
@@ -84,14 +84,6 @@ public class User {
         this.password = password;
     }
 
-    public String getAvatarRef() {
-        return avatarRef;
-    }
-
-    public void setAvatarRef(String avatarRef) {
-        this.avatarRef = avatarRef;
-    }
-
     public Collection<Creative> getCreatives() {
         return creatives;
     }
@@ -114,5 +106,13 @@ public class User {
 
     public void setComments(Collection<Comment> comments) {
         this.comments = comments;
+    }
+
+    public byte[] getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(byte[] avatar) {
+        this.avatar = avatar;
     }
 }
