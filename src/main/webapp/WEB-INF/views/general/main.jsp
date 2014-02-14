@@ -51,3 +51,19 @@
     </c:forEach>
 
 </div>
+
+<script>
+    $(document).ready(function(){
+        $(document).click(function(){
+            var scrt = $(document).scrollTop();
+            $.cookies.set("scroll", scrt);
+        });
+    });
+
+    $(document).ready(function(){
+        if($.cookies.get("scroll")) {
+            var scrt = $.cookies.get("scroll");
+            $(document).scrollTop(scrt);
+        }
+    });
+</script>

@@ -3,32 +3,6 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
 
-
-<script>
-    $(function () {
-        var root = $('#sortable');
-        $("#sortable").sortable({
-            revert: true
-        });
-        $('> *', root).each(function (index) {
-            this.id = 'item-' + index;
-        });
-        root.sortable({
-            'update': function (event, ui) {
-                var order = $(this).sortable('serialize');
-                $.cookies.set('sortable', order);
-            }
-        });
-        var c = $.cookies.get('sortable');
-        if (c) {
-            $.each(c.split('&'), function () {
-                var id = this.replace('[]=', '-');
-                $('#' + id).appendTo(root);
-            });
-        }
-    });
-</script>
-
 <div class="container">
 
     <div style="display: inline-block; margin-bottom: 20px">
@@ -139,6 +113,31 @@
     </security:authorize>
 
 </div>
+
+<script>
+    $(function () {
+        var root = $('#sortable');
+        $("#sortable").sortable({
+            revert: true
+        });
+        $('> *', root).each(function (index) {
+            this.id = 'item-' + index;
+        });
+        root.sortable({
+            'update': function (event, ui) {
+                var order = $(this).sortable('serialize');
+                $.cookies.set('sortable', order);
+            }
+        });
+        var c = $.cookies.get('sortable');
+        if (c) {
+            $.each(c.split('&'), function () {
+                var id = this.replace('[]=', '-');
+                $('#' + id).appendTo(root);
+            });
+        }
+    });
+</script>
 
 
 
