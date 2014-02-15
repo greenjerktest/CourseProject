@@ -33,7 +33,7 @@ public class SearchServiceImpl implements SearchService {
 
     @Override
     public Set<Creative> search(String term) {
-        Set<Creative> creativeSet = new HashSet<>();
+        Set<Creative> creativeSet = new HashSet<Creative>();
 
         for (Comment comment : commentService.search(term)) {
             creativeSet.add(comment.getCreative());

@@ -42,12 +42,12 @@ public class Creative {
     @OneToMany(fetch = FetchType.LAZY)
     @JoinColumn(name = "creative_id")
     @Fetch(value = FetchMode.SUBSELECT)
-    private Collection<Head> heads = new ArrayList<>();
+    private Collection<Head> heads = new ArrayList<Head>();
 
     @OneToMany(fetch = FetchType.LAZY)
     @JoinColumn(name = "creative_id")
     @Fetch(value = FetchMode.SUBSELECT)
-    private Collection<Comment> comments = new ArrayList<>();
+    private Collection<Comment> comments = new ArrayList<Comment>();
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "author_id")
@@ -57,7 +57,7 @@ public class Creative {
     @JoinTable(name = "creative_tag",
             joinColumns = {@JoinColumn(name = "creative_id")},
             inverseJoinColumns = {@JoinColumn(name = "tag_id")})
-    private Set<Tag> tags = new HashSet<>();
+    private Set<Tag> tags = new HashSet<Tag>();
 
 
     public String getDescription() {

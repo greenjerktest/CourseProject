@@ -32,7 +32,7 @@ public class TagServiceImpl extends GenericManagerImpl<Tag, Long> implements Tag
 
     public List<Tag> searchTag(String query) {
 
-        List<Tag> matched = new ArrayList<>();
+        List<Tag> matched = new ArrayList<Tag>();
         List<Tag> tags = tagDao.getAll();
         for (Tag tag : tags) {
             if (tag.getTagName().toLowerCase().contains(query.toLowerCase())) {
@@ -45,7 +45,7 @@ public class TagServiceImpl extends GenericManagerImpl<Tag, Long> implements Tag
     @Override
     public Set<Tag> getTagSet(String tags) {
 
-        Set<Tag> tagSet = new HashSet<>();
+        Set<Tag> tagSet = new HashSet<Tag>();
         String[] tagNameArr = tags.split(",");
         for (int i = 0; i < tagNameArr.length; i++) {
             tagSet.add(tagDao.getTagByName(tagNameArr[i]));

@@ -37,12 +37,12 @@ public class User {
     @OneToMany(fetch = FetchType.LAZY)
     @JoinColumn(name = "author_id")
     @Fetch(value = FetchMode.SUBSELECT)
-    private Collection<Creative> creatives = new ArrayList<>();
+    private Collection<Creative> creatives = new ArrayList<Creative>();
 
     @OneToMany(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     @Fetch(value = FetchMode.SUBSELECT)
-    private Collection<Comment> comments = new ArrayList<>();
+    private Collection<Comment> comments = new ArrayList<Comment>();
 
     public boolean isEnabled() {
         return enabled;

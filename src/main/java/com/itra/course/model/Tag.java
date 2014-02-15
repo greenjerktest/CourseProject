@@ -28,7 +28,7 @@ public class Tag {
     private String tagName;
 
     @ManyToMany(fetch = FetchType.LAZY, mappedBy = "tags")
-    private Set<Creative> creatives = new HashSet<>();
+    private Set<Creative> creatives = new HashSet<Creative>();
 
     public Set<Creative> getCreatives() {
         return creatives;

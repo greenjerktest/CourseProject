@@ -30,7 +30,7 @@ public class CreativeDaoImpl extends GenericDaoImpl<Creative, Long> implements C
     @Override
     public List<Creative> getAll() {
         List<Creative> creativeList = sessionFactory.getCurrentSession().createCriteria(Creative.class).list();
-        return new ArrayList<>(new HashSet<>(creativeList));
+        return new ArrayList<Creative>(new HashSet<Creative>(creativeList));
     }
 
 }
