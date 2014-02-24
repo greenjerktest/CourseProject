@@ -58,8 +58,9 @@ public class CreativeServiceImpl extends GenericManagerImpl<Creative, Long>
                 creative.setLogoRef(f.getAbsolutePath());
             }
         }
-
-        return creativeDao.save(creative).getId();
+        long id = creativeDao.save(creative).getId();
+        creativeDao.reindexAll(false);
+        return id;
     }
 
     @Override

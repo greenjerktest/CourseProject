@@ -38,6 +38,7 @@ public class CommentServiceImpl extends GenericManagerImpl<Comment, Long>
         comment.setComment(commentForm.getComment());
         comment.setUser(author);
         commentDao.save(comment);
+        commentDao.reindexAll(false);
     }
 
 }

@@ -4,6 +4,7 @@ import com.itra.course.dao.GenericDao;
 import com.itra.course.service.GenericManager;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

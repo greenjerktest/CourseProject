@@ -34,5 +34,6 @@ public class HeadServiceImpl extends GenericManagerImpl<Head, Long> implements H
         head.setContent(form.getContent());
         head.setCreative(creative);
         headDao.save(head);
+        headDao.reindexAll(false);
     }
 }
