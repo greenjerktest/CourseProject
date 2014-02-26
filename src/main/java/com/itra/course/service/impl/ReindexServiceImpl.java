@@ -30,6 +30,7 @@ public class ReindexServiceImpl implements ReindexService {
         creativeService.reindex();
         headService.reindex();
         tagService.reindex();
+
     }
 
 }
