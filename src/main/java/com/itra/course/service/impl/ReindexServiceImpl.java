@@ -31,7 +31,5 @@ public class ReindexServiceImpl implements ReindexService {
         headService.reindex();
         tagService.reindex();
     }
-     //sdsdsd
-    //wqdqwdwqdqwdwqdwqdwqdwqdwqd
-    //wqdwqdwq
+
 }
