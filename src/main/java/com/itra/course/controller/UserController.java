@@ -33,6 +33,7 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+
     @RequestMapping(value = "user/profile")
     public ModelAndView profile(ModelAndView mav) {
         mav.addObject("userForm", new UserForm());
