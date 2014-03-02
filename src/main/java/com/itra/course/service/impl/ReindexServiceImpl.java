@@ -24,13 +24,9 @@ public class ReindexServiceImpl implements ReindexService {
     TagService tagService;
 
     @Override
-    @Scheduled(fixedRate=60000)
+    @Scheduled(fixedRate=600000)
     public void reindexAll() {
-        commentService.reindex();
-        creativeService.reindex();
-        headService.reindex();
-        tagService.reindex();
-
+        creativeService.reindexAll(true);
     }
 
 }

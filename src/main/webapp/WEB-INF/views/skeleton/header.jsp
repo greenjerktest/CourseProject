@@ -41,19 +41,12 @@
             delimiter: ",",
             transformResult: function (response) {
                 return {
-
                     suggestions: $.map($.parseJSON(response), function (item) {
-
                         return { value: item.tagName, data: item.id };
                     })
-
                 };
-
             }
-
         });
-
-
     });
 </script>
 
